@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDUsynthesis | K-12 Transition Assessments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#F02711;
+    --red-dark:#C41F0D;
+    --red-tint:#FDEDEA;
+    --black:#1A1A1A;
+    --grey:#6B6B6B;
+    --grey-light:#9A9A94;
+    --bg:#FAF9F6;
+    --border:#E8E6E1;
+    --white:#FFFFFF;
+    --secure:#2E7D32;
+    --developing:#B8860B;
+    --support:#C62828;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', Arial, sans-serif;
+    background:var(--bg);
+    color:var(--black);
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{font-family:'Poppins', sans-serif;}
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  .container{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,246,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 28px; max-width:1120px; margin:0 auto;
+  }
+  .nav-logo{height:40px;}
+  .nav-links{display:flex; gap:6px; align-items:center;}
+  .nav-links button{
+    background:none; border:none; cursor:pointer;
+    font-family:'Inter', sans-serif; font-size:14.5px; font-weight:600;
+    color:var(--grey); padding:9px 16px; border-radius:20px;
+    transition:background .15s, color .15s;
+  }
+  .nav-links button:hover, .nav-links button.active{background:var(--black); color:#fff;}
+  .nav-cta.nav-cta{
+    background:var(--red); color:#fff !important; padding:10px 20px; border-radius:20px;
+    font-weight:700; font-size:14px; border:none; cursor:pointer;
+  }
+  .nav-cta.nav-cta:hover{background:var(--red-dark);}
+
+  /* view management */
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* HERO */
+  .hero{
+    padding:76px 28px 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:1120px; margin:0 auto;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--red-dark); background:var(--red-tint); padding:6px 14px; border-radius:20px;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:44px; font-weight:800; line-height:1.12; color:var(--black); margin-bottom:18px;
+    letter-spacing:-0.5px;
+  }
+  .hero h1 span{color:var(--red);}
+  .hero p.lede{font-size:17px; color:var(--grey); max-width:520px; margin-bottom:28px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--black); color:#fff; border:none; padding:14px 26px; border-radius:8px;
+    font-weight:700; font-size:15px; cursor:pointer; font-family:'Inter',sans-serif;
+    transition:background .15s; display:inline-block; text-decoration:none;
+  }
+  .btn-primary:hover{background:var(--red); color:#fff;}
+  .btn-secondary{
+    background:transparent; color:var(--black); border:1.5px solid var(--border); padding:14px 26px; border-radius:8px;
+    font-weight:700; font-size:15px; cursor:pointer; font-family:'Inter',sans-serif;
+    display:inline-block; text-decoration:none;
+  }
+  .btn-secondary:hover{border-color:var(--black);}
+
+  .cta-box{
+    background:var(--black); border-radius:12px; padding:28px 30px; margin-bottom:20px; text-align:center;
+  }
+  .cta-box h3{color:#fff; font-size:19px; margin-bottom:10px;}
+  .cta-box p{color:#ccc; font-size:14px; max-width:520px; margin:0 auto 20px;}
+  .cta-buttons{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .cta-buttons .btn-primary{background:var(--red);}
+  .cta-buttons .btn-primary:hover{background:var(--red-dark);}
+  .cta-buttons .btn-secondary{background:transparent; color:#fff; border-color:#555;}
+  .cta-buttons .btn-secondary:hover{border-color:#fff;}
+
+  /* signature motif: infinity bridge */
+  .motif-wrap{position:relative; display:flex; align-items:center; justify-content:center; height:340px;}
+  .motif-svg{width:100%; height:100%;}
+
+  .hero-stats{display:flex; gap:30px; margin-top:38px; flex-wrap:wrap;}
+  .hero-stat{margin-right:30px;}
+  .hero-stat:last-child{margin-right:0;}
+  .hero-stat b{display:block; font-family:'Poppins',sans-serif; font-size:26px; color:var(--black);}
+  .hero-stat span{font-size:12.5px; color:var(--grey);}
+
+  /* FEATURES */
+  .features{background:var(--white); padding:70px 28px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:30px; font-weight:800; margin-bottom:10px;}
+  .section-head p{color:var(--grey); font-size:15.5px;}
+  .feature-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .feature-card{padding:26px 20px; border:1px solid var(--border); border-radius:12px; background:var(--bg);}
+  .feature-card .fnum{
+    width:36px; height:36px; border-radius:50%; border:2px solid var(--red); color:var(--red-dark);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Poppins',sans-serif; margin-bottom:16px; font-size:14px;
+  }
+  .feature-card h3{font-size:16px; margin-bottom:8px;}
+  .feature-card p{font-size:13.5px; color:var(--grey);}
+
+  /* LIBRARY */
+  .library{padding:70px 28px;}
+  .grade-band-nav{display:flex; gap:10px; margin-bottom:36px; flex-wrap:wrap;}
+  .grade-band-nav button{
+    padding:8px 16px; border-radius:20px; border:1px solid var(--border); background:var(--white);
+    font-weight:600; font-size:13.5px; cursor:pointer; color:var(--grey); font-family:'Inter',sans-serif;
+  }
+  .grade-band-nav button.active{background:var(--black); color:#fff; border-color:var(--black);}
+  .assessment-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .a-card{
+    background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s;
+  }
+  .a-card:hover{box-shadow:0 10px 28px rgba(0,0,0,0.07); transform:translateY(-2px);}
+  .a-card-head{
+    padding:22px 22px 16px; background:var(--black); color:#fff; position:relative;
+  }
+  .a-card-head .badge-status{
+    position:absolute; top:16px; right:16px; font-size:10.5px; font-weight:700; letter-spacing:.5px;
+    padding:4px 10px; border-radius:12px; text-transform:uppercase;
+  }
+  .badge-live{background:var(--red); color:#fff;}
+  .badge-soon{background:#3a3a3a; color:#ccc;}
+  .grade-bridge{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .grade-circle{
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--red);
+    display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:700; font-size:14px;
+  }
+  .grade-bridge svg{width:26px; height:12px;}
+  .a-card-head h3{font-size:18px; font-weight:700;}
+  .a-card-body{padding:18px 22px 22px; flex:1; display:flex; flex-direction:column;}
+  .a-card-body p{font-size:13.5px; color:var(--grey); margin-bottom:14px;}
+  .topic-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px;}
+  .topic-tags span{font-size:11px; background:var(--red-tint); color:var(--red-dark); padding:4px 9px; border-radius:10px; font-weight:600;}
+  .a-card-meta{display:flex; gap:16px; font-size:12px; color:var(--grey-light); margin-bottom:18px;}
+  .a-card-body button{
+    margin-top:auto; background:var(--red); color:#fff; border:none; padding:12px; border-radius:8px;
+    font-weight:700; font-size:14px; cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  .a-card-body button:hover{background:var(--red-dark);}
+  .a-card-body button.disabled{background:#EDEBE7; color:var(--grey-light); cursor:not-allowed;}
+  .a-card-body button.disabled:hover{background:#EDEBE7;}
+
+  /* ABOUT */
+  .about{background:var(--white); padding:70px 28px; border-top:1px solid var(--border);}
+  .about-inner{display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:center;}
+  .about-photo{
+    aspect-ratio:1; border-radius:16px; background:linear-gradient(145deg, var(--black), #333);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Poppins',sans-serif;
+  }
+  .about h2{font-size:28px; margin-bottom:16px;}
+  .about p{color:var(--grey); font-size:15px; margin-bottom:14px;}
+  .credential-list{list-style:none; margin-top:18px;}
+  .credential-list li{
+    padding:10px 0; border-top:1px solid var(--border); font-size:13.5px; color:var(--black); display:flex; gap:10px;
+  }
+  .credential-list li::before{content:"—"; color:var(--red);}
+
+  /* FOOTER */
+  footer{background:var(--black); color:#ccc; padding:44px 28px 26px;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; max-width:1120px; margin:0 auto;}
+  .footer-logo{height:40px; margin-bottom:12px; filter:brightness(0) invert(1);}
+  footer .tagline{color:var(--red); font-style:italic; font-size:14px;}
+  .footer-col h4{color:#fff; font-size:13px; margin-bottom:12px; letter-spacing:.5px; text-transform:uppercase;}
+  .footer-col a, .footer-col p{display:block; font-size:13.5px; color:#aaa; margin-bottom:8px;}
+  .footer-bottom{max-width:1120px; margin:30px auto 0; padding-top:20px; border-top:1px solid #333; font-size:12px; color:#777;}
+
+  /* QUIZ VIEW */
+  .quiz-header{
+    background:var(--black); color:#fff; padding:26px 28px; text-align:center;
+  }
+  .quiz-header h2{font-size:22px; margin-bottom:6px;}
+  .quiz-header p{color:#ccc; font-size:13.5px;}
+  .quiz-wrap{max-width:820px; margin:0 auto; padding:28px 20px 90px;}
+  .quiz-meta-box{
+    background:var(--white); border:1px solid var(--border); border-left:5px solid var(--red);
+    border-radius:8px; padding:16px 20px; margin-bottom:24px; font-size:13.5px; color:var(--grey);
+  }
+  .topic-section{background:var(--white); border:1px solid var(--border); border-radius:10px; margin-bottom:20px; overflow:hidden;}
+  .topic-section .t-head{background:var(--black); color:#fff; padding:11px 18px; font-weight:700; font-size:14.5px;}
+  .q-block{padding:15px 18px; border-top:1px solid var(--border);}
+  .q-block:first-of-type{border-top:none;}
+  .q-text{font-size:14px; margin-bottom:9px; font-weight:600;}
+  .options{display:flex; flex-direction:column; gap:6px;}
+  .option{
+    display:flex; align-items:center; gap:9px; padding:8px 12px; border:1px solid var(--border);
+    border-radius:6px; cursor:pointer; font-size:13.5px;
+  }
+  .option:hover{background:var(--red-tint); border-color:var(--red);}
+  .option.selected{background:var(--red-tint); border-color:var(--red);}
+  .option input{accent-color:var(--red);}
+  .submit-bar{position:sticky; bottom:0; background:#fff; border-top:2px solid var(--red); padding:14px 20px; text-align:center;}
+  .progress{font-size:12px; color:var(--grey); margin-bottom:8px;}
+  .btn-submit{background:var(--red); color:#fff; border:none; padding:12px 30px; border-radius:24px; font-weight:700; font-size:14.5px; cursor:pointer;}
+  .btn-submit:hover{background:var(--red-dark);}
+
+  .results-header{background:var(--black); color:#fff; padding:26px; border-radius:10px; text-align:center; margin-bottom:22px;}
+  .results-header .score{font-size:40px; font-weight:800; color:var(--red); font-family:'Poppins',sans-serif;}
+  .verdict-box{background:var(--white); border:1px solid var(--border); border-left:5px solid var(--red); border-radius:8px; padding:16px 20px; margin-bottom:22px; font-size:14px;}
+  .verdict-box h3{font-size:15px; margin-bottom:8px; color:var(--red-dark);}
+  table.breakdown{width:100%; border-collapse:collapse; margin-bottom:26px; font-size:13.5px; background:#fff; border:1px solid var(--border); border-radius:8px; overflow:hidden;}
+  table.breakdown th{background:var(--black); color:#fff; text-align:left; padding:9px 12px; font-size:12px;}
+  table.breakdown td{padding:9px 12px; border-top:1px solid var(--border);}
+  .bar-bg{background:#EEE; border-radius:6px; height:9px; width:100%; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:6px;}
+  .fill-good{background:var(--secure);} .fill-mid{background:var(--developing);} .fill-low{background:var(--support);}
+  .back-link{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--grey); cursor:pointer; margin-bottom:16px; background:none; border:none;}
+  .back-link:hover{color:var(--red);}
+
+  .quiz-meta-fields{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px;}
+
+  .curriculum-panel{background:#fff; border:1px solid var(--border); border-radius:10px; padding:22px; margin-bottom:20px;}
+  .curriculum-panel h3{font-size:16px; margin-bottom:6px;}
+  .curriculum-panel p{font-size:13px; color:var(--grey); margin-bottom:16px;}
+  .curriculum-options{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:8px;}
+  .curriculum-btn{
+    padding:10px 18px; border-radius:20px; border:1.5px solid var(--border); background:var(--bg);
+    font-weight:600; font-size:13.5px; cursor:pointer; font-family:'Inter',sans-serif; color:var(--black);
+  }
+  .curriculum-btn:hover{border-color:var(--red);}
+  .curriculum-btn.selected{background:var(--black); color:#fff; border-color:var(--black);}
+  .board-section{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:none;}
+  .board-section.active{display:block;}
+  .board-section h4{font-size:13px; color:var(--grey); margin-bottom:10px; font-weight:600;}
+  .curriculum-confirm{margin-top:18px; text-align:right;}
+  .badge-curricula{
+    position:absolute; top:16px; left:16px; font-size:10.5px; font-weight:700; letter-spacing:.5px;
+    padding:4px 10px; border-radius:12px; text-transform:uppercase; background:var(--black); color:#fff;
+  }
+  .quiz-meta-fields label{font-size:11.5px; color:var(--grey); display:block; margin-bottom:4px; font-weight:600;}
+  .quiz-meta-fields input{width:100%; padding:9px 11px; border:1px solid var(--border); border-radius:6px; font-size:13.5px; font-family:'Inter',sans-serif;}
+
+  .report-doc{background:#fff; border:1px solid var(--border); border-radius:12px; padding:30px; margin-bottom:20px;}
+  .report-brand{display:flex; align-items:center; gap:14px; margin-bottom:22px; padding-bottom:18px; border-bottom:2px solid var(--red);}
+  .report-logo{height:44px;}
+  .report-brand-text strong{display:block; font-size:15px; font-family:'Poppins',sans-serif;}
+  .report-brand-text span{font-size:12px; color:var(--red); font-style:italic;}
+  table.report-fields{width:100%; border-collapse:collapse; margin-bottom:24px; font-size:13.5px;}
+  table.report-fields td{padding:7px 4px; border-bottom:1px solid var(--border);}
+  .report-h3{font-size:15px; margin:24px 0 10px; color:var(--red-dark); font-family:'Poppins',sans-serif;}
+  .report-list{padding-left:20px; font-size:13.5px;}
+  .report-list li{margin-bottom:6px;}
+  .report-muted{font-size:13.5px; color:var(--grey); font-style:italic;}
+  .report-footer{margin-top:30px; padding-top:16px; border-top:2px solid var(--red); font-size:13px;}
+  .report-tag{color:var(--red); font-style:italic; margin-top:4px;}
+  .report-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+
+  @media print{
+    nav, .back-link, .quiz-header, .report-actions, footer, .no-print{display:none !important;}
+    body{background:#fff;}
+    .quiz-wrap{padding:0; max-width:100%;}
+    .report-doc{border:none; padding:0;}
+  }
+
+  @media (max-width: 860px){
+    .hero-inner{grid-template-columns:1fr;}
+    .motif-wrap{height:220px; order:-1;}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+    .assessment-grid{grid-template-columns:1fr 1fr;}
+    .about-inner{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+  }
+  @media (max-width: 560px){
+    .feature-grid{grid-template-columns:1fr;}
+    .assessment-grid{grid-template-columns:1fr;}
+    .nav-inner{flex-wrap:wrap; row-gap:8px; padding:10px 16px;}
+    .nav-logo{height:32px;}
+    .nav-links{gap:4px; flex-wrap:wrap; width:100%; justify-content:center;}
+    .nav-links button{padding:7px 11px; font-size:13px;}
+    .nav-cta.nav-cta{padding:7px 14px; font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <img class="nav-logo" src="data:image/png;base64,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" alt="EDUsynthesis">
+    <div class="nav-links">
+      <button data-view="home" class="active">Home</button>
+      <button data-view="library">Assessments</button>
+      <button data-view="about">About</button>
+      <button class="nav-cta" data-view="library">Start an Assessment</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME VIEW -->
+<div class="view active" id="view-home">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">K–12 Transition Assessments</div>
+        <h1>Know exactly where a child stands <span>before</span> the next grade begins.</h1>
+        <p class="lede">EDUsynthesis diagnostics pinpoint what a student has actually mastered at the end of one grade, and what they need before starting the next — across curricula, with a plain-language report for parents in minutes.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="showView('library')">Browse Assessments</button>
+          <button class="btn-secondary" onclick="showView('about')">About EDUsynthesis</button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>K–12</b><span>Grade bands live now</span></div>
+          <div class="hero-stat"><b>20+ yrs</b><span>Tutoring experience</span></div>
+          <div class="hero-stat"><b>7+</b><span>Curricula covered</span></div>
+        </div>
+      </div>
+      <div class="motif-wrap">
+        <svg class="motif-svg" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="130" cy="170" r="86" stroke="#1A1A1A" stroke-width="14"/>
+          <circle cx="270" cy="170" r="86" stroke="#F02711" stroke-width="14"/>
+          <text x="130" y="182" font-family="Poppins" font-size="34" font-weight="700" fill="#1A1A1A" text-anchor="middle">now</text>
+          <text x="270" y="182" font-family="Poppins" font-size="34" font-weight="700" fill="#F02711" text-anchor="middle">next</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Why a diagnostic first</div>
+        <h2>Placement by evidence, not assumption.</h2>
+        <p>Every EDUsynthesis transition assessment is built the same way: test what the finishing grade actually requires, probe just enough of the next grade to see readiness, and turn the result into a plan — not just a score.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="fnum">1</div>
+          <h3>Grade-accurate content</h3>
+          <p>Questions are pitched to what a student should securely know by the end of the current grade — not a generic bank.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fnum">2</div>
+          <h3>Readiness, not just a score</h3>
+          <p>Each result is banded Secure, Developing, or Needs Support per topic, so next steps are obvious at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fnum">3</div>
+          <h3>Curriculum-aware</h3>
+          <p>Built by a tutor who works daily across Edexcel, Cambridge, Ontario, Nigerian Basic Education, and US frameworks.</p>
+        </div>
+        <div class="feature-card">
+          <div class="fnum">4</div>
+          <h3>Parent-ready reporting</h3>
+          <p>Instant topic breakdowns that translate straight into a plain-language report — no jargon, no guesswork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="library">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Live now</div>
+        <h2>Every K–12 transition, live now</h2>
+        <p>All twelve grade-transition assessments are live and ready to take — from Kindergarten through Grade 12, pick a jump and start immediately.</p>
+      </div>
+      <div class="assessment-grid" id="home-preview-grid"></div>
+      <div style="text-align:center; margin-top:32px;">
+        <button class="btn-primary" onclick="showView('library')">View full library</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LIBRARY VIEW -->
+<div class="view" id="view-library">
+  <section class="hero" style="padding:50px 28px 20px;">
+    <div class="container">
+      <div class="eyebrow">Assessment Library</div>
+      <h2 style="font-size:32px; font-weight:800; margin-bottom:10px;">K–12 Transition Diagnostics</h2>
+      <p style="color:var(--grey); font-size:15px; max-width:640px;">Select a grade transition below. Every assessment opens immediately in your browser and marks itself instantly, ending in a full performance report.</p>
+    </div>
+  </section>
+  <section class="library" style="padding-top:20px;">
+    <div class="container">
+      <div class="grade-band-nav" id="grade-band-nav">
+        <button data-band="all" class="active">All Grades (K–12)</button>
+        <button data-band="primary">Primary (K–6)</button>
+        <button data-band="secondary">Secondary (7–12)</button>
+      </div>
+      <div class="assessment-grid" id="library-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ABOUT VIEW -->
+<div class="view" id="view-about">
+  <section class="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-photo">
+          <img src="data:image/png;base64,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" alt="EDUsynthesis" style="width:70%; filter:brightness(0) invert(1);">
+        </div>
+        <div>
+          <div class="eyebrow">About EDUsynthesis</div>
+          <h2>Built by a tutor who lives in these transitions.</h2>
+          <p>EDUsynthesis is led by Olusegun Ilori, a mathematics tutor with over 20 years of experience and a Global Math Project Ambassador. He works daily with students moving between grades and between curricula — Edexcel, Cambridge, Ontario, Nigerian Basic Education, US and Dubai/UAE frameworks among them — which is exactly the gap these diagnostics are built to close.</p>
+          <p>Every assessment follows the same Concrete–Pictorial–Abstract philosophy behind his tutoring practice: check what's securely understood before building on it, rather than assuming a grade label means mastery.</p>
+          <ul class="credential-list">
+            <li>B.Sc. in Mathematics</li>
+            <li>Certified Abacus &amp; Mental Math Specialist</li>
+            <li>Global Math Project Ambassador</li>
+            <li>Creator of a CPA-based fractions video curriculum</li>
+            <li>20+ years tutoring across multiple international curricula</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- QUIZ VIEW -->
+<div class="view" id="view-quiz">
+  <div class="quiz-header">
+    <h2 id="quiz-title">Assessment</h2>
+    <p id="quiz-subtitle"></p>
+  </div>
+  <div class="quiz-wrap">
+    <button class="back-link" onclick="showView('library')">&larr; Back to library</button>
+    <div id="curriculum-select" style="display:none;"></div>
+    <div class="quiz-meta-box" id="quiz-intro"></div>
+    <div id="quiz-questions"></div>
+    <div class="submit-bar" id="quiz-submit-bar">
+      <div class="progress" id="quiz-progress">0 answered</div>
+      <button class="btn-submit" onclick="submitQuiz()">Submit &amp; See Results</button>
+    </div>
+    <div id="quiz-results" style="display:none;"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img class="footer-logo" src="data:image/png;base64,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" alt="EDUsynthesis">
+      <div class="tagline">...infinite learning.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a onclick="showView('home')">Home</a>
+      <a onclick="showView('library')">Assessments</a>
+      <a onclick="showView('about')">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:edusynthesis@gmail.com">edusynthesis@gmail.com</a>
+      <a href="tel:+2348189466140">+234 818 946 6140</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">© 2026 EDUsynthesis · Olusegun Ilori · Global Math Project Ambassador</div>
+</footer>
+
+<script>
+/* ---------------- ASSESSMENT DATA ---------------- */
+const assessments = [
+  {
+    id:"k1", from:"K", to:"1", title:"Kindergarten → Grade 1", status:"live", band:"primary",
+    description:"Checks core kindergarten-readiness skills: counting, shapes, simple addition/subtraction, measurement and time concepts, ahead of Grade 1.",
+    topics:["Counting & Numbers","Shapes & Patterns","Add & Subtract to 10","Measurement","Time & Position"],
+    duration:"15–20 min", qcount:15,
+    questions:[
+      {id:1, topic:"Counting & Number Recognition", q:"Which number comes after 7?", opts:["6","8","9","5"], correct:1},
+      {id:2, topic:"Counting & Number Recognition", q:"Count the dots: • • • • • •  How many are there?", opts:["5","6","7","8"], correct:1},
+      {id:3, topic:"Counting & Number Recognition", q:"Which number is the smallest? 4, 9, 2, 6", opts:["9","4","2","6"], correct:2},
+      {id:4, topic:"Shapes & Patterns", q:"Which shape has 3 sides?", opts:["Square","Circle","Triangle","Rectangle"], correct:2},
+      {id:5, topic:"Shapes & Patterns", q:"Continue the pattern: red, blue, red, blue, ___?", opts:["red","blue","green","yellow"], correct:0},
+      {id:6, topic:"Shapes & Patterns", q:"Which shape has no corners?", opts:["Triangle","Square","Circle","Rectangle"], correct:2},
+      {id:7, topic:"Add & Subtract to 10", q:"3 + 2 = ?", opts:["4","5","6","7"], correct:1},
+      {id:8, topic:"Add & Subtract to 10", q:"7 − 3 = ?", opts:["3","4","5","6"], correct:1},
+      {id:9, topic:"Add & Subtract to 10", q:"There are 5 apples. 2 are eaten. How many are left?", opts:["2","3","4","5"], correct:1},
+      {id:10, topic:"Measurement", q:"Which is longer: a pencil or a bus?", opts:["Pencil","Bus","Same","Can't tell"], correct:1},
+      {id:11, topic:"Measurement", q:"Which is heavier: a feather or a rock?", opts:["Feather","Rock","Same","Can't tell"], correct:1},
+      {id:12, topic:"Measurement", q:"Which holds more water: a cup or a bucket?", opts:["Cup","Bucket","Same","Can't tell"], correct:1},
+      {id:13, topic:"Time & Position", q:"What comes first in the day?", opts:["Breakfast","Dinner","Same time","Can't tell"], correct:0},
+      {id:14, topic:"Time & Position", q:"If you are behind the door, where are you?", opts:["In front","Behind","On top","Under"], correct:1},
+      {id:15, topic:"Time & Position", q:"On a clock, the long hand points to 12 and the short hand points to 3. What time is it?", opts:["3 o'clock","12 o'clock","6 o'clock","9 o'clock"], correct:0},
+    ]
+  },
+  {
+    id:"g1-2", from:"1", to:"2", title:"Grade 1 → Grade 2", status:"live", band:"primary",
+    description:"Checks place value to 100, addition/subtraction with regrouping, basic 2D/3D shapes, and simple word problems.",
+    topics:["Place Value","Addition & Subtraction","Shapes","Word Problems"],
+    duration:"20 min", qcount:16,
+    questions:[
+      {id:1, topic:"Place Value", q:"What is the value of the digit 4 in 47?", opts:["4","40","400","47"], correct:1},
+      {id:2, topic:"Place Value", q:"Which number is between 23 and 26?", opts:["27","22","25","29"], correct:2},
+      {id:3, topic:"Place Value", q:"Write 68 in expanded form.", opts:["60 + 8","6 + 8","600 + 8","68 + 0"], correct:0},
+      {id:4, topic:"Place Value", q:"Which number is greatest: 54, 45, 59, 49?", opts:["54","45","59","49"], correct:2},
+      {id:5, topic:"Addition & Subtraction", q:"27 + 15 = ?", opts:["42","32","41","52"], correct:0},
+      {id:6, topic:"Addition & Subtraction", q:"54 − 26 = ?", opts:["28","38","18","30"], correct:0},
+      {id:7, topic:"Addition & Subtraction", q:"There are 45 stickers. Jane gives away 19. How many are left?", opts:["26","24","36","16"], correct:0},
+      {id:8, topic:"Addition & Subtraction", q:"36 + 9 = ?", opts:["44","45","46","43"], correct:1},
+      {id:9, topic:"Shapes", q:"Which shape has 4 equal sides?", opts:["Rectangle","Square","Triangle","Circle"], correct:1},
+      {id:10, topic:"Shapes", q:"How many sides does a pentagon have?", opts:["4","5","6","3"], correct:1},
+      {id:11, topic:"Shapes", q:"Which of these is a 3D shape?", opts:["Square","Triangle","Cube","Circle"], correct:2},
+      {id:12, topic:"Shapes", q:"Which shape rolls because it has no flat sides?", opts:["Cube","Sphere","Cone","Cylinder"], correct:1},
+      {id:13, topic:"Word Problems", q:"Sam has 8 marbles. He finds 5 more. How many does he have now?", opts:["13","12","3","14"], correct:0},
+      {id:14, topic:"Word Problems", q:"There are 20 children in a class. 12 are boys. How many are girls?", opts:["10","9","8","7"], correct:2},
+      {id:15, topic:"Word Problems", q:"A basket has 14 apples. 6 are red and the rest are green. How many are green?", opts:["6","7","8","9"], correct:2},
+      {id:16, topic:"Word Problems", q:"Emma reads 3 books each week for 4 weeks. How many books does she read in total?", opts:["7","12","10","9"], correct:1},
+    ]
+  },
+  {
+    id:"g2-3", from:"2", to:"3", title:"Grade 2 → Grade 3", status:"live", band:"primary",
+    description:"Checks place value, 2–3 digit addition/subtraction, early multiplication and division, basic fractions, measurement/time and simple data reading.",
+    topics:["Place Value","Add & Subtract","Multiply & Divide","Fractions","Measurement & Time","Data & Graphs"],
+    duration:"25–30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Place Value & Number", q:"What is the value of the digit 5 in 358?", opts:["5","50","500","5,000"], correct:1},
+      {id:2, topic:"Place Value & Number", q:"Which number is greater: 482 or 428?", opts:["482","428","Equal","Can't tell"], correct:0},
+      {id:3, topic:"Place Value & Number", q:"Round 67 to the nearest 10.", opts:["60","70","65","80"], correct:1},
+      {id:4, topic:"Addition & Subtraction", q:"245 + 138 = ?", opts:["373","383","393","283"], correct:1},
+      {id:5, topic:"Addition & Subtraction", q:"502 − 246 = ?", opts:["256","266","246","276"], correct:0},
+      {id:6, topic:"Addition & Subtraction", q:"A shop had 320 books and sold 145. How many remain?", opts:["185","175","165","195"], correct:1},
+      {id:7, topic:"Multiplication & Division", q:"4 × 3 = ?", opts:["7","12","10","9"], correct:1},
+      {id:8, topic:"Multiplication & Division", q:"18 candies are shared equally among 3 children. How many does each get?", opts:["5","6","7","8"], correct:1},
+      {id:9, topic:"Multiplication & Division", q:"Which is another way to write 5 + 5 + 5?", opts:["5 × 3","5 × 5","3 × 3","5 + 3"], correct:0},
+      {id:10, topic:"Fractions", q:"Which fraction represents one half?", opts:["1/2","1/3","1/4","2/1"], correct:0},
+      {id:11, topic:"Fractions", q:"A pizza is cut into 4 equal slices. You eat 1 slice. What fraction did you eat?", opts:["1/4","1/2","1/3","4/1"], correct:0},
+      {id:12, topic:"Fractions", q:"Which is bigger: 1/2 or 1/4?", opts:["1/2","1/4","Equal","Can't tell"], correct:0},
+      {id:13, topic:"Measurement & Time", q:"How many minutes are in one hour?", opts:["30","45","60","100"], correct:2},
+      {id:14, topic:"Measurement & Time", q:"Which unit would you use to measure the length of a pencil?", opts:["Kilometers","Centimeters","Liters","Kilograms"], correct:1},
+      {id:15, topic:"Measurement & Time", q:"A movie starts at 4:00 and lasts 1 hour. What time does it end?", opts:["4:30","5:00","5:30","6:00"], correct:1},
+      {id:16, topic:"Data & Graphs", q:"A bar graph shows: apples 5, bananas 8, grapes 3. Which fruit has the most?", opts:["Apples","Bananas","Grapes","Can't tell"], correct:1},
+      {id:17, topic:"Data & Graphs", q:"In a tally chart, |||| represents how many?", opts:["3","4","5","6"], correct:1},
+      {id:18, topic:"Data & Graphs", q:"Using the graph (apples 5, bananas 8, grapes 3), which fruit has the fewest?", opts:["Apples","Bananas","Grapes","Can't tell"], correct:2},
+    ]
+  },
+  {
+    id:"g3-4", from:"3", to:"4", title:"Grade 3 → Grade 4", status:"live", band:"primary",
+    description:"Checks multiplication tables fluency, division with remainders, fraction equivalence, and perimeter.",
+    topics:["Multiplication","Division","Fractions","Perimeter"],
+    duration:"25 min", qcount:18,
+    questions:[
+      {id:1, topic:"Multiplication", q:"7 × 8 = ?", opts:["54","56","58","64"], correct:1},
+      {id:2, topic:"Multiplication", q:"9 × 6 = ?", opts:["56","54","45","63"], correct:1},
+      {id:3, topic:"Multiplication", q:"23 × 3 = ?", opts:["69","66","63","72"], correct:0},
+      {id:4, topic:"Multiplication", q:"Which multiplication matches '4 groups of 7'?", opts:["4 + 7","4 × 7","7 − 4","7 ÷ 4"], correct:1},
+      {id:5, topic:"Multiplication", q:"12 × 5 = ?", opts:["50","55","60","65"], correct:2},
+      {id:6, topic:"Division", q:"36 ÷ 6 = ?", opts:["5","6","7","8"], correct:1},
+      {id:7, topic:"Division", q:"29 ÷ 4 = ?", opts:["7 remainder 1","6 remainder 5","7 remainder 0","8 remainder 3"], correct:0},
+      {id:8, topic:"Division", q:"Divide 45 sweets equally among 5 friends. How many does each friend get?", opts:["8","9","10","7"], correct:1},
+      {id:9, topic:"Division", q:"54 ÷ 9 = ?", opts:["5","6","7","8"], correct:1},
+      {id:10, topic:"Division", q:"Which division matches 'share 20 into 4 equal groups'?", opts:["20 × 4","20 ÷ 4","20 − 4","20 + 4"], correct:1},
+      {id:11, topic:"Fractions", q:"Which fraction is equivalent to 1/2?", opts:["2/4","1/4","3/8","2/3"], correct:0},
+      {id:12, topic:"Fractions", q:"Which is bigger: 2/3 or 1/3?", opts:["2/3","1/3","Equal","Can't tell"], correct:0},
+      {id:13, topic:"Fractions", q:"A cake is cut into 8 slices. You eat 3. What fraction is left?", opts:["3/8","5/8","1/2","4/8"], correct:1},
+      {id:14, topic:"Fractions", q:"What is 1/2 of 10?", opts:["4","5","6","2"], correct:1},
+      {id:15, topic:"Perimeter", q:"Find the perimeter of a square with side 6cm.", opts:["12cm","18cm","24cm","36cm"], correct:2},
+      {id:16, topic:"Perimeter", q:"Find the perimeter of a rectangle with length 9cm and width 4cm.", opts:["13cm","26cm","36cm","18cm"], correct:1},
+      {id:17, topic:"Perimeter", q:"A triangle has sides 5cm, 6cm, and 7cm. Find its perimeter.", opts:["16cm","17cm","18cm","19cm"], correct:2},
+      {id:18, topic:"Perimeter", q:"If one side of a square is 8cm, what is the total perimeter?", opts:["16cm","24cm","32cm","40cm"], correct:2},
+    ]
+  },
+  {
+    id:"g4-5", from:"4", to:"5", title:"Grade 4 → Grade 5", status:"live", band:"primary",
+    description:"Checks multi-digit multiplication/division, fraction-decimal conversion, place value into the thousands, angle and shape properties, area/perimeter, and word problems.",
+    topics:["Multiplication & Division","Fractions & Decimals","Place Value","Geometry","Area & Perimeter","Word Problems"],
+    duration:"30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Multiplication & Division", q:"236 × 4 = ?", opts:["944","934","954","924"], correct:0},
+      {id:2, topic:"Multiplication & Division", q:"728 ÷ 8 = ?", opts:["81","91","89","101"], correct:1},
+      {id:3, topic:"Multiplication & Division", q:"Estimate: 397 × 5 is closest to which value?", opts:["1,500","2,000","2,500","3,000"], correct:1},
+      {id:4, topic:"Fractions & Decimals", q:"Convert 3/4 to a decimal.", opts:["0.34","0.75","0.43","0.25"], correct:1},
+      {id:5, topic:"Fractions & Decimals", q:"Which is equivalent to 2/3?", opts:["4/6","3/4","6/8","2/6"], correct:0},
+      {id:6, topic:"Fractions & Decimals", q:"Order from smallest to largest: 0.6, 1/2, 0.75", opts:["0.5, 0.6, 0.75","0.6, 0.5, 0.75","0.75, 0.6, 0.5","0.5, 0.75, 0.6"], correct:0},
+      {id:7, topic:"Place Value & Rounding", q:"What is the value of the 7 in 47,392?", opts:["70","700","7,000","70,000"], correct:2},
+      {id:8, topic:"Place Value & Rounding", q:"Round 6,482 to the nearest hundred.", opts:["6,400","6,500","6,480","6,000"], correct:1},
+      {id:9, topic:"Place Value & Rounding", q:"Which number is greatest: 12,340 or 12,430?", opts:["12,340","12,430","Equal","Can't tell"], correct:1},
+      {id:10, topic:"Geometry", q:"How many degrees are in a right angle?", opts:["45°","90°","180°","360°"], correct:1},
+      {id:11, topic:"Geometry", q:"A shape with 4 equal sides and 4 right angles is called a:", opts:["Rectangle","Square","Rhombus","Trapezoid"], correct:1},
+      {id:12, topic:"Geometry", q:"Which of these angles is obtuse?", opts:["45°","90°","120°","180°"], correct:2},
+      {id:13, topic:"Area & Perimeter", q:"Find the perimeter of a rectangle with length 8cm and width 5cm.", opts:["13cm","26cm","40cm","20cm"], correct:1},
+      {id:14, topic:"Area & Perimeter", q:"Find the area of a rectangle with length 6cm and width 4cm.", opts:["10cm²","20cm²","24cm²","28cm²"], correct:2},
+      {id:15, topic:"Area & Perimeter", q:"How many centimeters are in 3 meters?", opts:["30cm","300cm","3,000cm","3cm"], correct:1},
+      {id:16, topic:"Word Problems", q:"A survey shows 12 students like soccer, 8 like basketball, and 5 like tennis. How many students were surveyed?", opts:["20","25","15","30"], correct:1},
+      {id:17, topic:"Word Problems", q:"Tom has $45 and spends $18 on a book. How much does he have left?", opts:["$17","$27","$23","$37"], correct:1},
+      {id:18, topic:"Word Problems", q:"A train travels 60 km in 1 hour. At the same speed, how far does it travel in 3 hours?", opts:["120km","150km","180km","200km"], correct:2},
+    ]
+  },
+  {
+    id:"g5-6", from:"5", to:"6", title:"Grade 5 → Grade 6", status:"live", band:"primary",
+    description:"Checks decimal operations, ratio, volume of rectangular prisms, and coordinate plane basics.",
+    topics:["Decimals","Ratio","Volume","Coordinates"],
+    duration:"30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Decimals", q:"4.7 + 3.85 = ?", opts:["8.55","7.55","8.45","8.5"], correct:0},
+      {id:2, topic:"Decimals", q:"12.6 − 5.34 = ?", opts:["7.26","7.36","6.26","7.16"], correct:0},
+      {id:3, topic:"Decimals", q:"3.2 × 4 = ?", opts:["12.8","12.2","13.2","11.8"], correct:0},
+      {id:4, topic:"Decimals", q:"15.6 ÷ 3 = ?", opts:["5.1","5.2","4.2","5.6"], correct:1},
+      {id:5, topic:"Decimals", q:"Which decimal is greatest: 0.45, 0.5, 0.405?", opts:["0.45","0.5","0.405","Equal"], correct:1},
+      {id:6, topic:"Ratio", q:"Write the ratio of 8 boys to 12 girls in simplest form.", opts:["2:3","4:6","8:12","3:2"], correct:0},
+      {id:7, topic:"Ratio", q:"A recipe needs flour and sugar in the ratio 3:1. If you use 9 cups of flour, how much sugar is needed?", opts:["2 cups","3 cups","4 cups","5 cups"], correct:1},
+      {id:8, topic:"Ratio", q:"Share 40 sweets in the ratio 3:5. What is the smaller share?", opts:["15","20","25","10"], correct:0},
+      {id:9, topic:"Ratio", q:"Simplify the ratio 18:24.", opts:["3:4","6:8","9:12","2:3"], correct:0},
+      {id:10, topic:"Ratio", q:"The ratio of boys to girls in a class is 2:3. If there are 12 boys, how many girls are there?", opts:["16","18","15","20"], correct:1},
+      {id:11, topic:"Volume", q:"Find the volume of a cube with side 4cm.", opts:["16cm³","48cm³","64cm³","32cm³"], correct:2},
+      {id:12, topic:"Volume", q:"Find the volume of a rectangular prism 5cm × 3cm × 2cm.", opts:["10cm³","20cm³","30cm³","40cm³"], correct:2},
+      {id:13, topic:"Volume", q:"A box has a volume of 60cm³. Its length is 5cm and width is 4cm. Find its height.", opts:["2cm","3cm","4cm","5cm"], correct:1},
+      {id:14, topic:"Volume", q:"Which unit is used to measure volume?", opts:["cm","cm²","cm³","kg"], correct:2},
+      {id:15, topic:"Coordinates", q:"What are the coordinates of a point 3 units right and 2 units up from the origin?", opts:["(3,2)","(2,3)","(-3,2)","(3,-2)"], correct:0},
+      {id:16, topic:"Coordinates", q:"Which point lies on the x-axis?", opts:["(4,0)","(0,4)","(4,4)","(-4,-4)"], correct:0},
+      {id:17, topic:"Coordinates", q:"Point A is at (2,5). If it moves 3 units left, what is its new position?", opts:["(-1,5)","(5,5)","(2,2)","(1,5)"], correct:0},
+      {id:18, topic:"Coordinates", q:"Which quadrant is the point (-3,4) in?", opts:["First","Second","Third","Fourth"], correct:1},
+    ]
+  },
+  {
+    id:"g6-7", from:"6", to:"7", title:"Grade 6 → Grade 7", status:"live", band:"secondary",
+    description:"Checks directed numbers, algebraic expressions, ratio & proportion, angles & shapes, area & volume, and basic data/probability.",
+    topics:["Integers","Algebraic Expressions","Ratio & Proportion","Angles & Shapes","Area & Volume","Data & Probability"],
+    duration:"30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Integers", q:"−5 + 8 = ?", opts:["3","−3","13","−13"], correct:0},
+      {id:2, topic:"Integers", q:"−12 − (−4) = ?", opts:["−16","−8","8","16"], correct:1},
+      {id:3, topic:"Integers", q:"Order from smallest to largest: −3, 5, −8, 0", opts:["−8, −3, 0, 5","−3, −8, 0, 5","5, 0, −3, −8","0, −3, −8, 5"], correct:0},
+      {id:4, topic:"Algebraic Expressions", q:"Simplify: 4x + 3x", opts:["7x","12x","7","x"], correct:0},
+      {id:5, topic:"Algebraic Expressions", q:"Evaluate 3x + 2 when x = 5.", opts:["17","15","13","10"], correct:0},
+      {id:6, topic:"Algebraic Expressions", q:"Expand: 2(x + 3)", opts:["2x + 6","2x + 3","x + 6","2x + 5"], correct:0},
+      {id:7, topic:"Ratio & Proportion", q:"Simplify the ratio 12:18.", opts:["2:3","6:9","3:2","4:6"], correct:0},
+      {id:8, topic:"Ratio & Proportion", q:"Share £40 in the ratio 3:5. Find the smaller share.", opts:["£15","£20","£25","£10"], correct:0},
+      {id:9, topic:"Ratio & Proportion", q:"If 3 pens cost $6, how much do 7 pens cost?", opts:["$12","$14","$16","$18"], correct:1},
+      {id:10, topic:"Angles & Shapes", q:"Find the missing angle in a triangle with angles 40° and 70°.", opts:["60°","70°","80°","50°"], correct:1},
+      {id:11, topic:"Angles & Shapes", q:"What type of angle is 110°?", opts:["Acute","Right","Obtuse","Reflex"], correct:2},
+      {id:12, topic:"Angles & Shapes", q:"How many sides does a hexagon have?", opts:["5","6","7","8"], correct:1},
+      {id:13, topic:"Area & Volume", q:"Find the area of a rectangle 7cm by 5cm.", opts:["35cm²","24cm²","12cm²","70cm²"], correct:0},
+      {id:14, topic:"Area & Volume", q:"Find the volume of a cube with side 3cm.", opts:["9cm³","18cm³","27cm³","81cm³"], correct:2},
+      {id:15, topic:"Area & Volume", q:"Find the area of a triangle with base 10cm and height 6cm.", opts:["60cm²","30cm²","16cm²","36cm²"], correct:1},
+      {id:16, topic:"Data & Probability", q:"Find the mean of: 4, 6, 8, 10, 12", opts:["6","7","8","9"], correct:2},
+      {id:17, topic:"Data & Probability", q:"A die is rolled once. What is the probability of rolling a number greater than 4?", opts:["1/6","1/3","1/2","2/3"], correct:1},
+      {id:18, topic:"Data & Probability", q:"Find the mode of: 3, 5, 5, 7, 9, 5, 2", opts:["3","5","7","9"], correct:1},
+    ]
+  },
+  {
+    id:"g7-8", from:"7", to:"8", title:"Grade 7 → Grade 8", status:"live", band:"secondary",
+    description:"Checks linear equations, percentages & financial maths, Pythagoras' theorem, data analysis, probability, and algebraic manipulation.",
+    topics:["Linear Equations","Percentages & Finance","Pythagoras","Data Analysis","Probability","Algebraic Manipulation"],
+    duration:"30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Linear Equations", q:"Solve: x + 9 = 15", opts:["6","24","−6","5"], correct:0},
+      {id:2, topic:"Linear Equations", q:"Solve: 3x = 21", opts:["6","7","8","63"], correct:1},
+      {id:3, topic:"Linear Equations", q:"Solve: 2x − 5 = 11", opts:["6","7","8","9"], correct:2},
+      {id:4, topic:"Percentages & Finance", q:"Find 20% of 150.", opts:["25","30","35","15"], correct:1},
+      {id:5, topic:"Percentages & Finance", q:"A jacket costs $80 after a 20% discount. What was the original price?", opts:["$96","$100","$104","$90"], correct:1},
+      {id:6, topic:"Percentages & Finance", q:"Increase $60 by 25%.", opts:["$70","$72","$75","$80"], correct:2},
+      {id:7, topic:"Pythagoras", q:"A right triangle has legs 3cm and 4cm. Find the hypotenuse.", opts:["5cm","6cm","7cm","12cm"], correct:0},
+      {id:8, topic:"Pythagoras", q:"A right triangle has hypotenuse 13cm and one leg 5cm. Find the other leg.", opts:["8cm","10cm","12cm","14cm"], correct:2},
+      {id:9, topic:"Pythagoras", q:"Which set of lengths could form a right triangle?", opts:["3, 4, 5","2, 3, 4","5, 6, 7","6, 7, 8"], correct:0},
+      {id:10, topic:"Data Analysis", q:"Find the range of: 12, 18, 9, 25, 14", opts:["13","14","16","25"], correct:2},
+      {id:11, topic:"Data Analysis", q:"Find the median of: 7, 3, 9, 5, 11", opts:["5","7","9","6"], correct:1},
+      {id:12, topic:"Data Analysis", q:"A class scored these test marks: 60, 70, 80, 70, 90. Find the mode.", opts:["60","70","80","90"], correct:1},
+      {id:13, topic:"Probability", q:"A bag has 6 red and 4 blue balls. Find P(red).", opts:["3/5","2/5","3/10","1/2"], correct:0},
+      {id:14, topic:"Probability", q:"Two coins are tossed. What is the probability of getting two heads?", opts:["1/2","1/4","1/3","3/4"], correct:1},
+      {id:15, topic:"Probability", q:"A spinner has 8 equal sections numbered 1–8. Find P(number > 6).", opts:["1/8","1/4","3/8","1/2"], correct:1},
+      {id:16, topic:"Algebraic Manipulation", q:"Simplify: 5a + 3b − 2a + b", opts:["3a + 4b","7a + 4b","3a + 2b","7a + 2b"], correct:0},
+      {id:17, topic:"Algebraic Manipulation", q:"Factorise: 6x + 9", opts:["3(2x + 3)","2(3x + 9)","6(x + 9)","3(2x + 9)"], correct:0},
+      {id:18, topic:"Algebraic Manipulation", q:"Expand: (x + 2)(x + 3)", opts:["x² + 5x + 6","x² + 6x + 5","x² + x + 6","x² + 5x + 5"], correct:0},
+    ]
+  },
+  {
+    id:"g8-9", from:"8", to:"9", title:"Grade 8 → Grade 9", status:"live", band:"secondary",
+    description:"Checks linear graphs & functions, simultaneous equations, quadratic expressions, similar shapes & congruence, intro trigonometry, and scatter graphs.",
+    topics:["Linear Graphs","Simultaneous Equations","Quadratic Expressions","Similar Shapes","Trigonometry Intro","Scatter Graphs"],
+    duration:"30 min", qcount:18,
+    questions:[
+      {id:1, topic:"Linear Graphs", q:"What is the gradient of the line y = 3x + 2?", opts:["2","3","5","1/3"], correct:1},
+      {id:2, topic:"Linear Graphs", q:"Which point lies on the line y = 2x − 1?", opts:["(1,2)","(2,2)","(0,−1)","(3,4)"], correct:2},
+      {id:3, topic:"Linear Graphs", q:"Find the y-intercept of y = −4x + 7.", opts:["−4","4","7","−7"], correct:2},
+      {id:4, topic:"Simultaneous Equations", q:"Solve: x + y = 12, x − y = 2. Find x.", opts:["5","6","7","8"], correct:2},
+      {id:5, topic:"Simultaneous Equations", q:"Solve: 2x + y = 11, x = 3. Find y.", opts:["4","5","6","7"], correct:1},
+      {id:6, topic:"Simultaneous Equations", q:"Solve: 3x + 2y = 16, x = 2. Find y.", opts:["4","5","6","3"], correct:1},
+      {id:7, topic:"Quadratic Expressions", q:"Expand: (x + 4)(x − 2)", opts:["x² + 2x − 8","x² − 2x − 8","x² + 2x + 8","x² − 6x − 8"], correct:0},
+      {id:8, topic:"Quadratic Expressions", q:"Factorise: x² + 7x + 12", opts:["(x + 3)(x + 4)","(x + 2)(x + 6)","(x + 1)(x + 12)","(x − 3)(x − 4)"], correct:0},
+      {id:9, topic:"Quadratic Expressions", q:"Expand: (x − 5)²", opts:["x² − 10x + 25","x² − 25","x² + 10x + 25","x² − 5x + 25"], correct:0},
+      {id:10, topic:"Similar Shapes", q:"Two triangles are similar. One has a side of 4cm corresponding to a side of 8cm on the other. What is the scale factor?", opts:["1/2","2","4","8"], correct:1},
+      {id:11, topic:"Similar Shapes", q:"If two shapes are congruent, which of these must be true?", opts:["Same shape, different size","Same shape and same size","Different shape, same size","Same angles only"], correct:1},
+      {id:12, topic:"Similar Shapes", q:"A model is built at a scale of 1:20. If the model height is 6cm, what is the real height?", opts:["26cm","80cm","120cm","200cm"], correct:2},
+      {id:13, topic:"Trigonometry Intro", q:"In a right triangle, which ratio is opposite/hypotenuse?", opts:["Sine","Cosine","Tangent","Secant"], correct:0},
+      {id:14, topic:"Trigonometry Intro", q:"A right triangle has an opposite side of 5cm and hypotenuse of 13cm. Find sin(θ).", opts:["5/13","13/5","12/13","5/12"], correct:0},
+      {id:15, topic:"Trigonometry Intro", q:"Which ratio is adjacent/opposite?", opts:["Sine","Cosine","Tangent","Cotangent"], correct:3},
+      {id:16, topic:"Scatter Graphs", q:"A scatter graph shows points rising from bottom-left to top-right. What type of correlation is this?", opts:["Positive","Negative","No correlation","Zero"], correct:0},
+      {id:17, topic:"Scatter Graphs", q:"If two variables have negative correlation, as one increases the other:", opts:["Also increases","Decreases","Stays the same","Cannot be determined"], correct:1},
+      {id:18, topic:"Scatter Graphs", q:"A line of best fit is used to:", opts:["Connect every point exactly","Show the general trend of the data","List the data in order","Calculate the mean only"], correct:1},
+    ]
+  },
+  {
+    id:"g9-10", from:"9", to:"10", title:"Grade 9 → Grade 10", status:"live", band:"secondary",
+    description:"Checks indices & surds, quadratic equations, circle theorems, trigonometric ratios, vectors, and further algebra. Choose your curriculum for aligned content — questions are freshly sampled each attempt.",
+    topics:["Indices & Surds","Quadratic Equations","Circle Theorems","Trigonometric Ratios","Vectors","Further Algebra"],
+    duration:"35 min", qcount:18,
+    curricula:{
+      general:{
+        label:"General / Universal",
+        topics:["Indices & Surds","Quadratic Equations","Circle Theorems","Trigonometric Ratios","Vectors","Further Algebra"],
+        pool:{
+          "Indices & Surds":[
+            {q:"Simplify: x³ × x⁴", opts:["x⁷","x¹²","x⁴","x¹"], correct:0},
+            {q:"Simplify: √72", opts:["6√2","8√3","3√8","2√18"], correct:0},
+          ],
+          "Quadratic Equations":[
+            {q:"Solve: x² − 9 = 0", opts:["x = 3 or −3","x = 9 or −9","x = 3 only","x = −3 only"], correct:0},
+            {q:"Solve: x² + 6x + 8 = 0", opts:["x = −2 or −4","x = 2 or 4","x = −2 or 4","x = 2 or −4"], correct:0},
+          ],
+          "Circle Theorems":[
+            {q:"The angle in a semicircle is always:", opts:["90°","45°","60°","180°"], correct:0},
+            {q:"A tangent to a circle meets the radius at what angle?", opts:["90°","45°","60°","180°"], correct:0},
+          ],
+          "Trigonometric Ratios":[
+            {q:"In a right triangle, tan(θ) = opposite/adjacent. If opposite = 6 and adjacent = 8, find tan(θ).", opts:["0.75","1.33","0.6","0.8"], correct:0},
+            {q:"cos(60°) = ?", opts:["0.5","0.87","1","0"], correct:0},
+          ],
+          "Vectors":[
+            {q:"Vector a = (3,4). Find its magnitude.", opts:["5","7","25","12"], correct:0},
+            {q:"If a = (2,3) and b = (1,−1), find a + b.", opts:["(3,2)","(1,4)","(3,4)","(2,−3)"], correct:0},
+          ],
+          "Further Algebra":[
+            {q:"Make x the subject: y = 3x + 5", opts:["x = (y−5)/3","x = (y+5)/3","x = 3y−5","x = (y−3)/5"], correct:0},
+            {q:"Factorise fully: 3x² − 12", opts:["3(x − 2)(x + 2)","(3x − 2)(x + 2)","3(x − 4)(x + 1)","(x − 2)(3x + 2)"], correct:0},
+          ],
+        }
+      },
+      gcse:{
+        label:"GCSE (UK)",
+        boards:{
+          edexcel:{label:"Edexcel"}, aqa:{label:"AQA"}, ocr:{label:"OCR"}, wjec:{label:"WJEC / Eduqas"}
+        },
+        topics:["Number & Indices","Algebra & Equations","Geometry & Angles","Statistics & Probability"],
+        pool:{
+          "Number & Indices":[
+            {q:"Simplify: 2³ × 2⁴", opts:["2⁷","2¹²","2¹","8¹²"], correct:0},
+            {q:"Write 3.2 × 10⁴ as an ordinary number.", opts:["32,000","320,000","3,200","320"], correct:0},
+          ],
+          "Algebra & Equations":[
+            {q:"Solve: 4x − 7 = 13", opts:["x = 5","x = 4","x = 6","x = 20"], correct:0},
+            {q:"Expand: (x + 2)(x − 3)", opts:["x² − x − 6","x² + x − 6","x² − 5x − 6","x² − x + 6"], correct:0},
+          ],
+          "Geometry & Angles":[
+            {q:"Find the missing angle in a triangle with angles 50° and 65°.", opts:["65°","55°","75°","60°"], correct:0},
+            {q:"Find the area of a trapezium with parallel sides 6cm and 10cm, and height 4cm.", opts:["32cm²","64cm²","16cm²","28cm²"], correct:0},
+          ],
+          "Statistics & Probability":[
+            {q:"Find the mean of: 12, 15, 18, 21, 24", opts:["18","16","20","15"], correct:0},
+            {q:"A bag has 5 red, 3 blue, 2 green balls. Find P(not red).", opts:["1/2","1/5","3/10","1/10"], correct:0},
+          ],
+        }
+      },
+      cambridge:{
+        label:"Cambridge IGCSE",
+        topics:["Number & Indices","Algebra & Equations","Geometry & Angles","Statistics & Probability"],
+        pool:{
+          "Number & Indices":[
+            {q:"Simplify: 5² × 5³", opts:["5⁵","5⁶","5¹","25⁵"], correct:0},
+            {q:"Write 0.0056 in standard form.", opts:["5.6×10⁻³","5.6×10³","56×10⁻⁴","0.56×10⁻²"], correct:0},
+          ],
+          "Algebra & Equations":[
+            {q:"Solve: 3(x + 2) = 21", opts:["x = 5","x = 7","x = 3","x = 9"], correct:0},
+            {q:"Factorise: x² − 49", opts:["(x − 7)(x + 7)","(x − 49)(x + 1)","(x − 7)²","(x + 7)²"], correct:0},
+          ],
+          "Geometry & Angles":[
+            {q:"A regular polygon has exterior angle 40°. How many sides does it have?", opts:["9","8","10","7"], correct:0},
+            {q:"Find the volume of a cylinder with radius 3cm and height 7cm (π ≈ 3.14).", opts:["197.82cm³","65.94cm³","131.88cm³","219.8cm³"], correct:0},
+          ],
+          "Statistics & Probability":[
+            {q:"Find the median of: 8, 3, 10, 5, 12, 7, 9", opts:["8","7","9","10"], correct:0},
+            {q:"Two dice are rolled. Find P(sum = 7).", opts:["1/6","1/12","1/9","1/36"], correct:0},
+          ],
+        }
+      },
+      us_common_core:{
+        label:"US Common Core (Algebra I)",
+        topics:["Exponents","Equations & Functions","Geometry & Angles","Data & Probability"],
+        pool:{
+          "Exponents":[
+            {q:"Simplify: x⁵ · x²", opts:["x⁷","x¹⁰","x³","x⁵"], correct:0},
+            {q:"Evaluate: 4⁻²", opts:["1/16","−8","16","−1/16"], correct:0},
+          ],
+          "Equations & Functions":[
+            {q:"Solve for x: 2x + 5 = 3x − 1", opts:["x = 6","x = 5","x = 4","x = 7"], correct:0},
+            {q:"If f(x) = 2x − 3, find f(5).", opts:["7","10","2","13"], correct:0},
+          ],
+          "Geometry & Angles":[
+            {q:"Find the missing angle in a triangle with angles 42° and 88°.", opts:["50°","48°","55°","60°"], correct:0},
+            {q:"Find the area of a triangle with base 14 and height 6.", opts:["42","84","20","28"], correct:0},
+          ],
+          "Data & Probability":[
+            {q:"Find the range of: 22, 45, 18, 39, 27", opts:["27","23","45","18"], correct:0},
+            {q:"A jar has 10 marbles: 4 red, 6 blue. Find P(blue).", opts:["3/5","2/5","1/2","6/4"], correct:0},
+          ],
+        }
+      },
+      ontario:{
+        label:"Ontario (MPM1D)",
+        topics:["Number & Indices","Linear Relations","Geometry & Measurement","Financial Literacy & Data"],
+        pool:{
+          "Number & Indices":[
+            {q:"Simplify: (2³)²", opts:["64","36","32","16"], correct:0},
+            {q:"Write 250,000 in scientific notation.", opts:["2.5×10⁵","2.5×10⁴","25×10⁴","0.25×10⁶"], correct:0},
+          ],
+          "Linear Relations":[
+            {q:"Solve: 5x − 3 = 2x + 12", opts:["x = 5","x = 3","x = 6","x = 15"], correct:0},
+            {q:"Find the slope of the line through (2,3) and (6,11).", opts:["2","4","0.5","8"], correct:0},
+          ],
+          "Geometry & Measurement":[
+            {q:"Find the missing angle in a triangle with angles 35° and 95°.", opts:["50°","45°","55°","60°"], correct:0},
+            {q:"Find the area of a parallelogram with base 9cm and height 5cm.", opts:["45cm²","14cm²","22.5cm²","40cm²"], correct:0},
+          ],
+          "Financial Literacy & Data":[
+            {q:"An item costs $80 plus 13% HST. Find the total cost.", opts:["$90.40","$92.00","$88.40","$91.20"], correct:0},
+            {q:"Find the mean of: 70, 75, 80, 85, 90", opts:["80","75","85","78"], correct:0},
+          ],
+        }
+      },
+      nigerian:{
+        label:"Nigerian (WAEC / NECO)",
+        topics:["Number & Indices","Algebra & Equations","Geometry & Mensuration","Statistics & Probability"],
+        pool:{
+          "Number & Indices":[
+            {q:"Simplify: 3² × 3³", opts:["3⁵","3⁶","3¹","9⁵"], correct:0},
+            {q:"Convert 0.00072 to standard form.", opts:["7.2×10⁻⁴","7.2×10⁴","72×10⁻⁵","0.72×10⁻³"], correct:0},
+          ],
+          "Algebra & Equations":[
+            {q:"Solve: 2(x − 3) = 10", opts:["x = 8","x = 5","x = 7","x = 6"], correct:0},
+            {q:"Factorise: x² + 5x + 6", opts:["(x + 2)(x + 3)","(x + 1)(x + 6)","(x + 6)(x − 1)","(x − 2)(x − 3)"], correct:0},
+          ],
+          "Geometry & Mensuration":[
+            {q:"Find the missing angle in a triangle with angles 48° and 72°.", opts:["60°","55°","65°","50°"], correct:0},
+            {q:"Find the area of a rectangle 12cm by 8cm.", opts:["96cm²","20cm²","40cm²","48cm²"], correct:0},
+          ],
+          "Statistics & Probability":[
+            {q:"Find the mode of: 4, 7, 7, 9, 7, 3, 5", opts:["7","4","9","3"], correct:0},
+            {q:"A basket has 6 oranges and 4 mangoes. Find P(mango).", opts:["2/5","3/5","1/2","4/6"], correct:0},
+          ],
+        }
+      },
+      dubai:{
+        label:"Dubai / UAE",
+        topics:["Number & Indices","Algebra & Equations","Geometry & Angles","Statistics & Probability"],
+        pool:{
+          "Number & Indices":[
+            {q:"Simplify: 6² × 6", opts:["216","36","1296","72"], correct:0},
+            {q:"Write 4.7 × 10³ as an ordinary number.", opts:["4,700","470","47,000","0.0047"], correct:0},
+          ],
+          "Algebra & Equations":[
+            {q:"Solve: 3x + 4 = 19", opts:["x = 5","x = 4","x = 6","x = 3"], correct:0},
+            {q:"Expand: (x − 4)(x + 4)", opts:["x² − 16","x² + 16","x² − 8x + 16","x² − 8x − 16"], correct:0},
+          ],
+          "Geometry & Angles":[
+            {q:"Find the missing angle in a triangle with angles 60° and 60°.", opts:["60°","70°","50°","90°"], correct:0},
+            {q:"Find the perimeter of a rectangle 9m by 6m.", opts:["30m","54m","15m","45m"], correct:0},
+          ],
+          "Statistics & Probability":[
+            {q:"Find the mean of: 88, 92, 79, 85, 91", opts:["87","85","90","88"], correct:0},
+            {q:"A spinner has 5 equal sections numbered 1–5. Find P(even number).", opts:["2/5","3/5","1/5","1/2"], correct:0},
+          ],
+        }
+      },
+    },
+    questions:[
+      {id:1, topic:"Indices & Surds", q:"Simplify: x³ × x⁴", opts:["x⁷","x¹²","x⁴","x¹"], correct:0},
+      {id:2, topic:"Indices & Surds", q:"Simplify: √72", opts:["6√2","8√3","3√8","2√18"], correct:0},
+      {id:3, topic:"Indices & Surds", q:"Evaluate: 2⁻³", opts:["1/8","−8","8","−1/8"], correct:0},
+      {id:4, topic:"Quadratic Equations", q:"Solve: x² − 9 = 0", opts:["x = 3 or −3","x = 9 or −9","x = 3 only","x = −3 only"], correct:0},
+      {id:5, topic:"Quadratic Equations", q:"Solve: x² + 6x + 8 = 0", opts:["x = −2 or −4","x = 2 or 4","x = −2 or 4","x = 2 or −4"], correct:0},
+      {id:6, topic:"Quadratic Equations", q:"Find the discriminant of x² − 4x + 3 = 0.", opts:["4","16","−4","0"], correct:0},
+      {id:7, topic:"Circle Theorems", q:"The angle in a semicircle is always:", opts:["45°","60°","90°","180°"], correct:2},
+      {id:8, topic:"Circle Theorems", q:"A tangent to a circle meets the radius at what angle?", opts:["45°","60°","90°","180°"], correct:2},
+      {id:9, topic:"Circle Theorems", q:"The angle at the centre of a circle is ___ the angle at the circumference (same arc).", opts:["Half","Equal to","Twice","Three times"], correct:2},
+      {id:10, topic:"Trigonometric Ratios", q:"In a right triangle, tan(θ) = opposite/adjacent. If opposite = 6 and adjacent = 8, find tan(θ).", opts:["0.75","1.33","0.6","0.8"], correct:0},
+      {id:11, topic:"Trigonometric Ratios", q:"A right triangle has hypotenuse 10cm and angle 30°. Find the opposite side (sin 30° = 0.5).", opts:["5cm","8.66cm","10cm","3cm"], correct:0},
+      {id:12, topic:"Trigonometric Ratios", q:"cos(60°) = ?", opts:["0.5","0.87","1","0"], correct:0},
+      {id:13, topic:"Vectors", q:"Vector a = (3,4). Find its magnitude.", opts:["5","7","25","12"], correct:0},
+      {id:14, topic:"Vectors", q:"If a = (2,3) and b = (1,−1), find a + b.", opts:["(3,2)","(1,4)","(3,4)","(2,−3)"], correct:0},
+      {id:15, topic:"Vectors", q:"If a = (4,6), find 2a.", opts:["(8,12)","(6,8)","(8,6)","(4,12)"], correct:0},
+      {id:16, topic:"Further Algebra", q:"Make x the subject: y = 3x + 5", opts:["x = (y−5)/3","x = (y+5)/3","x = 3y−5","x = (y−3)/5"], correct:0},
+      {id:17, topic:"Further Algebra", q:"Simplify: (2x²)³", opts:["8x⁶","6x⁶","8x⁵","2x⁶"], correct:0},
+      {id:18, topic:"Further Algebra", q:"Factorise fully: 3x² − 12", opts:["3(x − 2)(x + 2)","(3x − 2)(x + 2)","3(x − 4)(x + 1)","(x − 2)(3x + 2)"], correct:0},
+    ]
+  },
+  {
+    id:"g10-11", from:"10", to:"11", title:"Grade 10 → Grade 11", status:"live", band:"secondary",
+    description:"Checks advanced quadratics, further trigonometry, sequences, algebraic fractions, cumulative frequency, and functions.",
+    topics:["Advanced Quadratics","Further Trigonometry","Sequences","Algebraic Fractions","Cumulative Frequency","Functions"],
+    duration:"35 min", qcount:18,
+    questions:[
+      {id:1, topic:"Advanced Quadratics", q:"Solve using factorisation: x² − 5x + 6 = 0", opts:["x = 2 or 3","x = −2 or −3","x = 1 or 6","x = 6 or −1"], correct:0},
+      {id:2, topic:"Advanced Quadratics", q:"Solve: 2x² − 8 = 0", opts:["x = 2 or −2","x = 4 or −4","x = 8 or −8","x = 2 only"], correct:0},
+      {id:3, topic:"Advanced Quadratics", q:"Complete the square for x² + 6x.", opts:["(x + 3)² − 9","(x + 6)² − 36","(x + 3)² + 9","(x − 3)² − 9"], correct:0},
+      {id:4, topic:"Further Trigonometry", q:"Find θ if sin(θ) = 0.5 (0° ≤ θ ≤ 90°).", opts:["30°","45°","60°","90°"], correct:0},
+      {id:5, topic:"Further Trigonometry", q:"A ladder leans against a wall making 60° with the ground. If the ladder is 10m long, find the height reached (sin 60° ≈ 0.87).", opts:["5m","7m","8.7m","10m"], correct:2},
+      {id:6, topic:"Further Trigonometry", q:"Which identity is always true?", opts:["sin²θ + cos²θ = 1","sinθ + cosθ = 1","tanθ = sinθ + cosθ","sinθ = cosθ"], correct:0},
+      {id:7, topic:"Sequences", q:"Find the next term: 2, 6, 18, 54, ___", opts:["108","150","162","216"], correct:2},
+      {id:8, topic:"Sequences", q:"Find the nth term of the arithmetic sequence: 5, 8, 11, 14, ...", opts:["3n + 2","2n + 3","3n − 1","n + 5"], correct:0},
+      {id:9, topic:"Sequences", q:"Find the 10th term of the sequence with nth term 2n² − 1.", opts:["199","189","200","179"], correct:0},
+      {id:10, topic:"Algebraic Fractions", q:"Simplify: (x² − 9)/(x − 3)", opts:["x + 3","x − 3","x² − 3","x + 9"], correct:0},
+      {id:11, topic:"Algebraic Fractions", q:"Simplify: 3/x + 2/x", opts:["5/x","6/x²","5/(2x)","6/x"], correct:0},
+      {id:12, topic:"Algebraic Fractions", q:"Simplify: (2x)/(4x²)", opts:["1/(2x)","2/x","x/2","1/(4x)"], correct:0},
+      {id:13, topic:"Cumulative Frequency", q:"A cumulative frequency graph is used to estimate:", opts:["The mean only","The median and quartiles","The mode only","The range only"], correct:1},
+      {id:14, topic:"Cumulative Frequency", q:"If the total frequency is 60, at what cumulative frequency value would you read off the median?", opts:["15","30","45","60"], correct:1},
+      {id:15, topic:"Cumulative Frequency", q:"The interquartile range is found by:", opts:["Upper quartile − Lower quartile","Upper quartile + Lower quartile","Median − Mode","Max − Min"], correct:0},
+      {id:16, topic:"Functions", q:"If f(x) = 2x + 3, find f(4).", opts:["11","10","8","7"], correct:0},
+      {id:17, topic:"Functions", q:"If f(x) = x² − 1, find f(−3).", opts:["8","−8","10","−10"], correct:0},
+      {id:18, topic:"Functions", q:"If f(x) = 3x and g(x) = x + 2, find f(g(2)).", opts:["12","8","10","14"], correct:0},
+    ]
+  },
+  {
+    id:"g11-12", from:"11", to:"12", title:"Grade 11 → Grade 12", status:"live", band:"secondary",
+    description:"Checks function transformations, exponentials & logarithms, radians & further trig, intro differentiation, sequences & series, and vectors.",
+    topics:["Function Transformations","Exponentials & Logs","Radians & Trig","Differentiation Intro","Sequences & Series","Vectors"],
+    duration:"35 min", qcount:18,
+    questions:[
+      {id:1, topic:"Function Transformations", q:"The graph of y = f(x) + 3 is a transformation of y = f(x) by:", opts:["Shifting up 3","Shifting right 3","Stretching by 3","Shifting down 3"], correct:0},
+      {id:2, topic:"Function Transformations", q:"The graph of y = f(x − 2) is a transformation of y = f(x) by:", opts:["Shifting up 2","Shifting right 2","Shifting left 2","Reflecting"], correct:1},
+      {id:3, topic:"Function Transformations", q:"If f(x) = x², what is f(−x)?", opts:["x²","−x²","−x","x"], correct:0},
+      {id:4, topic:"Exponentials & Logs", q:"Solve: 2ˣ = 8", opts:["3","4","2","6"], correct:0},
+      {id:5, topic:"Exponentials & Logs", q:"Simplify: log₂(8)", opts:["2","3","4","8"], correct:1},
+      {id:6, topic:"Exponentials & Logs", q:"Solve: log₁₀(x) = 2", opts:["10","20","100","1000"], correct:2},
+      {id:7, topic:"Radians & Trig", q:"Convert 180° to radians.", opts:["π","2π","π/2","π/4"], correct:0},
+      {id:8, topic:"Radians & Trig", q:"Convert π/2 radians to degrees.", opts:["45°","60°","90°","180°"], correct:2},
+      {id:9, topic:"Radians & Trig", q:"Find the exact value of sin(π/6).", opts:["1/2","√2/2","√3/2","1"], correct:0},
+      {id:10, topic:"Differentiation Intro", q:"Differentiate: y = x³", opts:["3x²","x²","3x","x⁴/4"], correct:0},
+      {id:11, topic:"Differentiation Intro", q:"Differentiate: y = 5x² + 2x", opts:["10x + 2","5x + 2","10x² + 2","10x + 2x"], correct:0},
+      {id:12, topic:"Differentiation Intro", q:"Find the gradient of y = x² at x = 3.", opts:["6","9","3","12"], correct:0},
+      {id:13, topic:"Sequences & Series", q:"Find the sum of the first 5 terms of the arithmetic sequence 3, 7, 11, 15, 19.", opts:["45","50","55","60"], correct:2},
+      {id:14, topic:"Sequences & Series", q:"Find the sum of the first 4 terms of the geometric sequence 2, 6, 18, 54.", opts:["72","80","86","108"], correct:1},
+      {id:15, topic:"Sequences & Series", q:"For an arithmetic sequence with first term 4 and common difference 3, find the 6th term.", opts:["16","19","22","17"], correct:1},
+      {id:16, topic:"Vectors", q:"Find the dot product of a = (2,3) and b = (4,−1).", opts:["5","11","−5","8"], correct:0},
+      {id:17, topic:"Vectors", q:"Find the magnitude of vector v = (6,8).", opts:["10","14","48","100"], correct:0},
+      {id:18, topic:"Vectors", q:"If a = (1,2,3) and b = (3,2,1), find a + b.", opts:["(4,4,4)","(3,4,3)","(4,0,4)","(2,0,2)"], correct:0},
+    ]
+  },
+];
+
+let currentAssessment = null;
+let answers = {};
+let selectedCurriculum = null;
+let selectedBoard = null;
+
+/* ---------------- VIEW SWITCHING ---------------- */
+function showView(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelectorAll('.nav-links button[data-view]').forEach(b=>{
+    b.classList.toggle('active', b.dataset.view === view && b.textContent.trim() !== 'Start an Assessment');
+  });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.nav-links button[data-view]').forEach(b=>{
+  b.addEventListener('click', ()=>showView(b.dataset.view));
+});
+
+/* ---------------- CARD RENDERING ---------------- */
+function gradeBridgeSVG(){
+  return `<svg viewBox="0 0 30 14" xmlns="http://www.w3.org/2000/svg"><path d="M2 7 H28 M22 2 L28 7 L22 12" stroke="#F02711" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+function cardHTML(a){
+  const statusBadge = a.status === 'live'
+    ? `<span class="badge-status badge-live">Live</span>`
+    : `<span class="badge-status badge-soon">In Development</span>`;
+  const btn = a.status === 'live'
+    ? `<button onclick="startAssessment('${a.id}')">Start Assessment</button>`
+    : `<button class="disabled" disabled>Coming Soon</button>`;
+  const curriculaBadge = a.curricula ? `<span class="badge-curricula">${Object.keys(a.curricula).length} Curricula</span>` : '';
+  return `
+  <div class="a-card">
+    <div class="a-card-head">
+      ${statusBadge}
+      ${curriculaBadge}
+      <div class="grade-bridge">
+        <div class="grade-circle">${a.from}</div>
+        ${gradeBridgeSVG()}
+        <div class="grade-circle">${a.to}</div>
+      </div>
+      <h3>${a.title}</h3>
+    </div>
+    <div class="a-card-body">
+      <p>${a.description}</p>
+      <div class="topic-tags">${a.topics.map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="a-card-meta"><span>${a.qcount} questions</span><span>${a.duration}</span></div>
+      ${btn}
+    </div>
+  </div>`;
+}
+
+function renderGrids(band){
+  const filtered = (!band || band === 'all') ? assessments : assessments.filter(a=>a.band===band);
+  document.getElementById('library-grid').innerHTML = filtered.map(cardHTML).join('');
+  const featuredIds = ['k1','g4-5','g9-10'];
+  document.getElementById('home-preview-grid').innerHTML = featuredIds.map(id=>assessments.find(a=>a.id===id)).map(cardHTML).join('');
+}
+renderGrids('all');
+
+document.querySelectorAll('#grade-band-nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#grade-band-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGrids(btn.dataset.band);
+  });
+});
+
+/* ---------------- QUIZ ENGINE ---------------- */
+function shuffleArray(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Builds a fresh, randomized question set from a curriculum's topic pools.
+// One question is sampled per topic each time, and its options are shuffled,
+// so retakes genuinely differ from attempt to attempt.
+function buildQuestionsFromPool(curriculumDef){
+  let qId = 1;
+  const built = [];
+  curriculumDef.topics.forEach(topic=>{
+    const pool = curriculumDef.pool[topic];
+    const picked = pool[Math.floor(Math.random() * pool.length)];
+    const optIdxs = shuffleArray(picked.opts.map((_, i) => i));
+    const newOpts = optIdxs.map(i => picked.opts[i]);
+    const newCorrect = optIdxs.indexOf(picked.correct);
+    built.push({ id: qId++, topic, q: picked.q, opts: newOpts, correct: newCorrect });
+  });
+  return built;
+}
+
+function startAssessment(id){
+  currentAssessment = assessments.find(a=>a.id===id);
+  answers = {};
+  selectedCurriculum = null;
+  selectedBoard = null;
+
+  if (currentAssessment.curricula) {
+    renderCurriculumPicker();
+    document.getElementById('curriculum-select').style.display = 'block';
+    document.getElementById('quiz-intro').style.display = 'none';
+    document.getElementById('quiz-questions').style.display = 'none';
+    document.getElementById('quiz-submit-bar').style.display = 'none';
+    document.getElementById('quiz-results').style.display = 'none';
+    document.getElementById('quiz-title').textContent = currentAssessment.title;
+    document.getElementById('quiz-subtitle').textContent = `Choose a curriculum to begin · ${currentAssessment.duration}`;
+    showView('quiz');
+  } else {
+    document.getElementById('curriculum-select').style.display = 'none';
+    launchQuiz(currentAssessment.questions, currentAssessment.qcount);
+  }
+}
+
+function renderCurriculumPicker(){
+  const curricula = currentAssessment.curricula;
+  let html = `<div class="curriculum-panel">
+    <h3>Choose your curriculum</h3>
+    <p>Questions will be aligned to the curriculum you select, and freshly sampled each time you take this assessment.</p>
+    <div class="curriculum-options" id="curriculum-options">`;
+  Object.keys(curricula).forEach(key=>{
+    html += `<button class="curriculum-btn" data-curriculum="${key}">${curricula[key].label}</button>`;
+  });
+  html += `</div><div class="board-section" id="board-section"><h4>Choose your exam board</h4><div class="curriculum-options" id="board-options"></div></div>
+    <div class="curriculum-confirm"><button class="btn-primary" id="curriculum-continue-btn" disabled onclick="confirmCurriculumAndStart()">Continue</button></div>
+  </div>`;
+  document.getElementById('curriculum-select').innerHTML = html;
+
+  document.querySelectorAll('#curriculum-options .curriculum-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('#curriculum-options .curriculum-btn').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedCurriculum = btn.dataset.curriculum;
+      selectedBoard = null;
+      const def = curricula[selectedCurriculum];
+      const boardSection = document.getElementById('board-section');
+      const continueBtn = document.getElementById('curriculum-continue-btn');
+      if (def.boards) {
+        boardSection.classList.add('active');
+        let boardHtml = '';
+        Object.keys(def.boards).forEach(bKey=>{
+          boardHtml += `<button class="curriculum-btn" data-board="${bKey}">${def.boards[bKey].label}</button>`;
+        });
+        document.getElementById('board-options').innerHTML = boardHtml;
+        document.querySelectorAll('#board-options .curriculum-btn').forEach(bBtn=>{
+          bBtn.addEventListener('click', ()=>{
+            document.querySelectorAll('#board-options .curriculum-btn').forEach(b=>b.classList.remove('selected'));
+            bBtn.classList.add('selected');
+            selectedBoard = bBtn.dataset.board;
+            continueBtn.disabled = false;
+          });
+        });
+        continueBtn.disabled = true;
+      } else {
+        boardSection.classList.remove('active');
+        continueBtn.disabled = false;
+      }
+    });
+  });
+}
+
+function confirmCurriculumAndStart(){
+  const def = currentAssessment.curricula[selectedCurriculum];
+  const questions = buildQuestionsFromPool(def);
+  document.getElementById('curriculum-select').style.display = 'none';
+  launchQuiz(questions, questions.length, def.label + (selectedBoard ? ' — ' + def.boards[selectedBoard].label : ''));
+}
+
+function launchQuiz(questions, qcount, curriculumLabel){
+  currentAssessment.activeQuestions = questions;
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('quiz-title').textContent = currentAssessment.title;
+  document.getElementById('quiz-subtitle').textContent = `${qcount} questions · ${currentAssessment.duration}${curriculumLabel ? ' · ' + curriculumLabel : ''}`;
+  document.getElementById('quiz-intro').innerHTML = `
+    <strong>Instructions:</strong> ${currentAssessment.description} Attempt every question — a best guess is more useful than a blank answer.
+    <div class="quiz-meta-fields">
+      <div><label>Student name</label><input type="text" id="student-name-input" placeholder="Full name"></div>
+      <div><label>Date</label><input type="date" id="assess-date-input" value="${today}"></div>
+    </div>`;
+  renderQuizQuestions(questions);
+  document.getElementById('quiz-results').style.display = 'none';
+  document.getElementById('quiz-intro').style.display = 'block';
+  document.getElementById('quiz-questions').style.display = 'block';
+  document.getElementById('quiz-submit-bar').style.display = 'block';
+  showView('quiz');
+}
+
+function renderQuizQuestions(questionList){
+  const questions = questionList || currentAssessment.questions;
+  const topicsInOrder = [...new Set(questions.map(q=>q.topic))];
+  let html = '';
+  topicsInOrder.forEach(topic=>{
+    const qs = questions.filter(q=>q.topic===topic);
+    html += `<div class="topic-section"><div class="t-head">${topic}</div>`;
+    qs.forEach(q=>{
+      html += `<div class="q-block"><div class="q-text">Q${q.id}. ${q.q}</div><div class="options">`;
+      q.opts.forEach((opt,i)=>{
+        html += `<label class="option" data-qid="${q.id}" data-idx="${i}"><input type="radio" name="q${q.id}" value="${i}"> ${opt}</label>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('quiz-questions').innerHTML = html;
+  document.querySelectorAll('.option').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      const qid = opt.dataset.qid;
+      answers[qid] = parseInt(opt.dataset.idx);
+      document.querySelectorAll(`[data-qid="${qid}"]`).forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+      opt.querySelector('input').checked = true;
+      document.getElementById('quiz-progress').textContent = `${Object.keys(answers).length} of ${currentAssessment.qcount} answered`;
+    });
+  });
+}
+
+function bandFor(pct){
+  if(pct>=80) return {cls:'fill-good', label:'Secure'};
+  if(pct>=55) return {cls:'fill-mid', label:'Developing'};
+  return {cls:'fill-low', label:'Needs Support'};
+}
+
+function submitQuiz(){
+  const answered = Object.keys(answers).length;
+  const activeQs = currentAssessment.activeQuestions || currentAssessment.questions;
+  if(answered < activeQs.length){
+    if(!confirm(`Only ${answered} of ${activeQs.length} questions answered. Submit anyway?`)) return;
+  }
+  const studentName = (document.getElementById('student-name-input')?.value || '').trim() || 'This student';
+  const assessDate = document.getElementById('assess-date-input')?.value || new Date().toISOString().split('T')[0];
+  const dateDisplay = new Date(assessDate+'T00:00:00').toLocaleDateString('en-GB', {day:'numeric', month:'long', year:'numeric'});
+
+  const topicsInOrder = [...new Set(activeQs.map(q=>q.topic))];
+  const topicStats = {};
+  topicsInOrder.forEach(t=>topicStats[t]={correct:0,total:0});
+  let correctCount = 0;
+  activeQs.forEach(q=>{
+    topicStats[q.topic].total++;
+    if(answers[q.id]===q.correct){correctCount++; topicStats[q.topic].correct++;}
+  });
+  const overallPct = Math.round((correctCount/activeQs.length)*100);
+  const overallBand = bandFor(overallPct);
+  const fromLabel = currentAssessment.from==='K' ? 'Kindergarten' : 'Grade '+currentAssessment.from;
+  const toLabel = 'Grade '+currentAssessment.to;
+
+  // Silently log every completed attempt — fires in the background, never blocks the report from showing.
+  const LOG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz-ZOjJK_JViVLDRS2wtRC-T0pxb8HSpOZ0xneZQJyJ76bdj3C_nSNLD410t3kthhGL/exec';
+  try {
+    fetch(LOG_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({
+        assessment: currentAssessment.title,
+        studentName: studentName,
+        score: `${correctCount}/${activeQs.length} (${overallPct}%)`,
+        readiness: overallBand.label
+      })
+    }).catch(()=>{});
+  } catch(e) {}
+
+  // per-topic bands, sorted for strengths/priorities
+  const topicResults = topicsInOrder.map(topic=>{
+    const s = topicStats[topic];
+    const pct = Math.round((s.correct/s.total)*100);
+    return {topic, pct, correct:s.correct, total:s.total, band:bandFor(pct)};
+  });
+  const strengths = topicResults.filter(t=>t.pct>=80).sort((a,b)=>b.pct-a.pct);
+  const priorities = topicResults.filter(t=>t.pct<55).sort((a,b)=>a.pct-b.pct);
+  const developing = topicResults.filter(t=>t.pct>=55 && t.pct<80);
+
+  let overview, nextSteps;
+  if(overallPct>=80){
+    overview = `${studentName} scored ${overallPct}% overall, showing a solid grasp of ${fromLabel} foundations. Readiness for ${toLabel} content is <strong>Secure</strong>.`;
+    nextSteps = `Begin ${toLabel} content on the normal schedule. ${priorities.length || developing.length ? `Keep a light eye on ${[...priorities,...developing].map(t=>t.topic).join(', ')} in the first few weeks as new material builds on it.` : 'No specific gaps were flagged — proceed with confidence.'}`;
+  } else if(overallPct>=55){
+    overview = `${studentName} scored ${overallPct}% overall. Core ${fromLabel} foundations are mostly in place, but readiness for ${toLabel} is <strong>Developing</strong> rather than fully secure.`;
+    nextSteps = `Recommend 3–4 weeks of targeted review on ${priorities.length ? priorities.map(t=>t.topic).join(', ') : developing.map(t=>t.topic).join(', ')} before leaning heavily on ${toLabel} content that assumes those skills are automatic.`;
+  } else {
+    overview = `${studentName} scored ${overallPct}% overall. Several ${fromLabel} foundations are not yet secure, so readiness for ${toLabel} is currently <strong>Needs Support</strong>.`;
+    nextSteps = `Recommend a structured catch-up block focused on ${priorities.map(t=>t.topic).join(', ')} before introducing new ${toLabel} material, to avoid compounding gaps.`;
+  }
+
+  let html = `
+  <div class="report-doc">
+    <div class="report-brand">
+      <img src="${document.querySelector('.nav-logo').src}" alt="EDUsynthesis" class="report-logo">
+      <div class="report-brand-text">
+        <strong>EDUsynthesis Performance Report</strong>
+        <span>...infinite learning.</span>
+      </div>
+    </div>
+    <table class="report-fields">
+      <tr><td><strong>Student</strong></td><td>${studentName}</td><td><strong>Date</strong></td><td>${dateDisplay}</td></tr>
+      <tr><td><strong>Assessment</strong></td><td>${currentAssessment.title}</td><td><strong>Score</strong></td><td>${correctCount} / ${activeQs.length} (${overallPct}%)</td></tr>
+    </table>
+
+    <div class="results-header"><div class="score">${overallPct}%</div><p>${correctCount} of ${activeQs.length} correct — Readiness: ${overallBand.label}</p></div>
+
+    <div class="verdict-box"><h3>1. Overview</h3><p>${overview}</p></div>
+
+    <h3 class="report-h3">2. Topic-by-Topic Breakdown</h3>
+    <table class="breakdown"><thead><tr><th>Topic</th><th>Score</th><th style="width:35%;">Strength</th></tr></thead><tbody>`;
+  topicResults.forEach(t=>{
+    html += `<tr><td>${t.topic}</td><td>${t.correct}/${t.total} (${t.pct}%) — ${t.band.label}</td><td><div class="bar-bg"><div class="bar-fill ${t.band.cls}" style="width:${t.pct}%;"></div></div></td></tr>`;
+  });
+  html += `</tbody></table>`;
+
+  html += `<h3 class="report-h3">3. Strengths</h3>`;
+  html += strengths.length
+    ? `<ul class="report-list">${strengths.map(t=>`<li>${t.topic} — secure (${t.pct}%)</li>`).join('')}</ul>`
+    : `<p class="report-muted">No topic reached the Secure band (80%+) on this attempt — see priority areas below.</p>`;
+
+  html += `<h3 class="report-h3">4. Priority Areas for Development</h3>`;
+  html += (priorities.length || developing.length)
+    ? `<ul class="report-list">${[...priorities,...developing].map(t=>`<li>${t.topic} — ${t.band.label.toLowerCase()} (${t.pct}%)</li>`).join('')}</ul>`
+    : `<p class="report-muted">No priority gaps identified — all topics scored in the Secure band.</p>`;
+
+  html += `<h3 class="report-h3">5. Recommended Next Steps</h3><p>${nextSteps}</p>`;
+
+  html += `<div class="report-footer"><p>Olusegun Ilori — EDUsynthesis · Global Math Project Ambassador</p><p class="report-tag">...infinite learning.</p></div>`;
+  html += `</div>`; // end report-doc
+
+  // CTA block — the actual conversion moment for ad traffic
+  html += `<div class="cta-box no-print">
+    <h3>Want help closing these gaps?</h3>
+    <p>This free diagnostic is exactly what EDUsynthesis tutoring is built around — we start every student from a real picture of what they know, not a guess. Get in touch and we'll go through ${studentName === 'This student' ? "this report" : studentName + "'s report"} together and map out next steps.</p>
+    <div class="cta-buttons">
+      <a class="btn-primary" href="https://wa.me/2348189466140?text=${encodeURIComponent('Hi EDUsynthesis, I just completed the '+currentAssessment.title+' diagnostic and would like to talk about tutoring.')}" target="_blank">WhatsApp Us</a>
+      <a class="btn-primary" href="mailto:edusynthesis@gmail.com?subject=${encodeURIComponent('Tutoring enquiry after '+currentAssessment.title+' diagnostic')}&body=${encodeURIComponent('Hi EDUsynthesis,\n\nI just completed the '+currentAssessment.title+' diagnostic (score: '+overallPct+'%) and would like to discuss tutoring.\n\nStudent name: '+studentName+'\n')}">Email Us</a>
+      <a class="btn-secondary" href="tel:+2348189466140">Call +234 818 946 6140</a>
+    </div>
+  </div>`;
+
+  // build a plain-text version of the report for sending straight to the tutor
+  const textLines = [
+    'EDUSYNTHESIS PERFORMANCE REPORT',
+    `Student: ${studentName}`,
+    `Date: ${dateDisplay}`,
+    `Assessment: ${currentAssessment.title}`,
+    `Score: ${correctCount}/${activeQs.length} (${overallPct}%) — Readiness: ${overallBand.label}`,
+    '',
+    'TOPIC BREAKDOWN:',
+    ...topicResults.map(t=>`- ${t.topic}: ${t.correct}/${t.total} (${t.pct}%) — ${t.band.label}`),
+    '',
+    'STRENGTHS:',
+    strengths.length ? strengths.map(t=>`- ${t.topic} (${t.pct}%)`).join('\n') : '- None reached Secure band this attempt',
+    '',
+    'PRIORITY AREAS:',
+    (priorities.length||developing.length) ? [...priorities,...developing].map(t=>`- ${t.topic} (${t.pct}%)`).join('\n') : '- None — all topics Secure',
+  ].join('\n');
+
+  html += `<div class="report-actions no-print">
+    <a class="btn-primary" href="mailto:edusynthesis@gmail.com?subject=${encodeURIComponent('Diagnostic report — '+studentName+' — '+currentAssessment.title)}&body=${encodeURIComponent(textLines)}">Send Report to EDUsynthesis</a>
+    <button class="btn-primary" onclick="window.print()">Print / Save as PDF</button>
+    <button class="btn-secondary" onclick="startAssessment('${currentAssessment.id}')">Retake</button>
+    <button class="btn-secondary" onclick="showView('library')">Back to Library</button>
+  </div>`;
+
+  document.getElementById('quiz-results').innerHTML = html;
+  document.getElementById('quiz-results').style.display = 'block';
+  document.getElementById('quiz-intro').style.display = 'none';
+  document.getElementById('quiz-questions').style.display = 'none';
+  document.getElementById('quiz-submit-bar').style.display = 'none';
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
