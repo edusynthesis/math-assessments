@@ -1367,14 +1367,19 @@ function submitQuiz(){
   const toLabel = 'Grade '+currentAssessment.to;
 
   // Silently log every completed attempt — fires in the background, never blocks the report from showing.
-  const LOG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz-ZOjJK_JViVLDRS2wtRC-T0pxb8HSpOZ0xneZQJyJ76bdj3C_nSNLD410t3kthhGL/exec';
+  const curriculumLabel = selectedCurriculum && currentAssessment.curricula
+    ? currentAssessment.curricula[selectedCurriculum].label + (selectedBoard ? ' — ' + currentAssessment.curricula[selectedCurriculum].boards[selectedBoard].label : '')
+    : '';
+  const LOG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw9L4eW2DEioBLEVDY8fxSjkOZkd9P3DdSjdDO0adCRi-TfA8zPWes3W97bXf2ZLuAF/exec';
   try {
     fetch(LOG_ENDPOINT, {
       method: 'POST',
       mode: 'no-cors',
       headers: {'Content-Type': 'text/plain'},
       body: JSON.stringify({
+        date: dateDisplay,
         assessment: currentAssessment.title,
+        curriculum: curriculumLabel,
         studentName: studentName,
         score: `${correctCount}/${activeQs.length} (${overallPct}%)`,
         readiness: overallBand.label
