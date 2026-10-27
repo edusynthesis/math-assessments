@@ -1492,6 +1492,15 @@ function submitQuiz(){
   document.getElementById('quiz-submit-bar').style.display = 'none';
   window.scrollTo(0,0);
 }
+/* ---------------- DEEP LINKS: index.html#g4-5 opens that assessment; #library / #about open a view ---------------- */
+function openFromHash(){
+  const h=decodeURIComponent((location.hash||'').slice(1));
+  if(!h) return;
+  if(['home','library','about'].includes(h)){ showView(h); return; }
+  if(assessments.some(a=>a.id===h)) startAssessment(h);
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
 </script>
 </body>
 </html>

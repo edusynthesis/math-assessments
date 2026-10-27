@@ -55,6 +55,24 @@ h2{font-family:var(--f-display);font-size:14px;letter-spacing:.12em;text-transfo
 .so{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px}
 .so a{min-height:48px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);text-decoration:none;font-weight:600;font-size:14px;padding:0 12px}
 .so a:visited{color:var(--ink)}
+.pick{border:2px solid var(--line);border-radius:18px;background:var(--surface);padding:18px 14px 14px;margin-bottom:22px}
+.ph{margin:0 0 4px !important;color:var(--ink) !important;font-size:18px !important;letter-spacing:0 !important;text-transform:none !important}
+.pnote{text-align:center;color:var(--muted);font-size:14px;margin:0 0 14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.seg button{min-height:48px;border:0;background:transparent;color:var(--ink);font:600 14px var(--f-body);padding:6px 8px;touch-action:manipulation}
+.seg button+button{border-left:2px solid var(--line)}
+.seg button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.grades{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+@media (min-width:480px){.grades{grid-template-columns:repeat(4,1fr)}}
+.grades a{min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:2px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;padding:6px 4px;background:var(--bg)}
+.grades a:visited{color:var(--ink)}
+.grades a b{font-family:var(--f-display);font-size:16px;line-height:1.2}
+.grades a small{font-size:12px;color:var(--muted)}
+.grades a:focus-visible,.seg button:focus-visible,.inl:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (hover:hover){.grades a:hover{border-color:var(--accent)}}
+.pick .lk{margin-top:10px}
+.glyph{font-family:var(--f-display);font-size:16px}
+a.inl{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;min-height:44px}
 footer{margin-top:30px;text-align:center;color:var(--muted);font-size:13px}
 footer i{font-family:Georgia,serif}
 </style>
@@ -70,17 +88,28 @@ footer i{font-family:Georgia,serif}
     <li>SAT</li><li>IGCSE</li><li>GCSE</li><li>Cambridge Checkpoint</li><li>K-12</li>
   </ul>
 
-  <nav class="links" aria-label="Main links">
-    <a class="lk hot" href="./">
-      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3h6v3H9zM9 11l2 2 4-4M9 17h6"/></svg></span>
-      <span><b>Free K-12 Math Assessment</b><small>Find out exactly where your child stands</small></span>
+  <section class="pick" aria-labelledby="pick-h">
+    <h2 id="pick-h" class="ph">Choose a free assessment</h2>
+    <p class="pnote">Pick the move the student is making. Each one takes 20–40 minutes and gives an instant report.</p>
+    <div class="seg" role="tablist" aria-label="School system">
+      <button role="tab" aria-selected="true" data-sys="us">US / International grades</button>
+      <button role="tab" aria-selected="false" data-sys="uk">UK years</button>
+    </div>
+    <div class="grades" id="grades"></div>
+    <a class="lk wide" href="algebra1-onboarding.html">
+      <span class="ic" aria-hidden="true"><b class="glyph">x²</b></span>
+      <span><b>Algebra 1</b><small>US high school Algebra 1 check</small></span>
       <span class="go" aria-hidden="true">→</span>
     </a>
     <a class="lk hot" href="sat-practice.html">
       <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M6 16V10M11 16V6M16 16v-4M20 16V8"/></svg></span>
-      <span><b>Free SAT Math Practice Test</b><small>44 questions · projected score out of 800</small></span>
+      <span><b>SAT Math Practice Test</b><small>Full length · projected score out of 800</small></span>
       <span class="go" aria-hidden="true">→</span>
     </a>
+    <p class="pnote" style="margin-top:12px"><a class="inl" href="./#library">Not sure? Browse every assessment</a></p>
+  </section>
+
+  <nav class="links" aria-label="More links">
     <a class="lk" href="https://wa.me/2348189466140?text=Hi%20EDUsynthesis%2C%20I%27d%20like%20to%20book%20a%20free%20math%20tutoring%20consultation." target="_blank" rel="noopener">
       <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"/></svg></span>
       <span><b>Book a free consultation</b><small>Message us on WhatsApp</small></span>
@@ -109,5 +138,24 @@ footer i{font-family:Georgia,serif}
 
   <footer>EDUsynthesis · <i>...infinite learning.</i></footer>
 </main>
+<script>
+(function(){
+  // Assessment ids on the K-12 site; "to" is the US grade the student is moving into.
+  var G=[['k1','K','1'],['g1-2','1','2'],['g2-3','2','3'],['g3-4','3','4'],['g4-5','4','5'],['g5-6','5','6'],['g6-7','6','7'],['g7-8','7','8'],['g8-9','8','9'],['g9-10','9','10'],['g10-11','10','11'],['g11-12','11','12']];
+  var box=document.getElementById('grades'), tabs=document.querySelectorAll('.seg button'), sys='us';
+  try{ if(localStorage.getItem('edus-sys')==='uk') sys='uk'; }catch(e){}
+  function yr(g){ return g==='K' ? 'Y1' : 'Y'+(+g+1); }   // UK Year = US grade + 1 (Reception ≈ K)
+  function draw(){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.sys===sys ? 'true' : 'false'); });
+    box.innerHTML=G.map(function(r){
+      var main = sys==='us' ? (r[1]==='K'?'K':'Gr '+r[1])+' → '+r[2] : yr(r[1])+' → '+yr(r[2]);
+      var sub  = sys==='us' ? 'UK '+yr(r[1])+' → '+yr(r[2]) : 'Grade '+r[1]+' → '+r[2];
+      return '<a href="./#'+r[0]+'" aria-label="Assessment for moving into '+(sys==='us'?'Grade '+r[2]:'Year '+yr(r[2]).slice(1))+'"><b>'+main+'</b><small>'+sub+'</small></a>';
+    }).join('');
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ sys=t.dataset.sys; try{localStorage.setItem('edus-sys',sys);}catch(e){} draw(); }); });
+  draw();
+})();
+</script>
 </body>
 </html>
